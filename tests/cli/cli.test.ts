@@ -1,30 +1,35 @@
-import { describe, it, expect } from 'vitest';
-import { execa } from 'execa';
+import { describe, it, expect, vi, beforeEach, afterEach, type Mock } from 'vitest';
+import prompts from 'prompts';
+import { runCli } from '../../cli';
 import { createTmpProject } from '../helpers/tmpDir';
-import { join } from 'node:path';
 
-describe('CLI', () => {
-	it('generates files when called with entity', async () => {
-		const root = await createTmpProject();
+vi.mock('prompts', () => ({
+  default: vi.fn(),
+}));
 
-		await execa(
-			join(process.cwd(), 'dist/cli.js'),
-			['User'],
-			{ cwd: root }
-		);
+describe('CLI interactive', () => {
+let originalCwd: string;
 
+  beforeEach(() => {
+    originalCwd = process.cwd();
+  });
 
-		const featurePath = join(
-			root,
-			'resources/js/features/users'
-		);
+  afterEach(() => {
+    process.chdir(originalCwd);
+    vi.clearAllMocks();
+  });
 
-		expect(featurePath).toBeDefined();
-	});
+  it('uses prompt when entity is not provided', async () => {
+	const tmpProject = await createTmpProject();
 
-	it('fails with no entity', async () => {
-		await expect(
-			execa('node', [join(process.cwd(), 'dist/cli.js')])
-		).rejects.toThrow();
-	});
+    (prompts as unknown as Mock).mockResolvedValue({
+      entity: 'User',
+    });
+
+	process.chdir(tmpProject);
+
+    await runCli(['node', 'cli.js']);
+
+    expect(prompts).toHaveBeenCalledOnce();
+  });
 });

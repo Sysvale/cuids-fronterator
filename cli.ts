@@ -41,5 +41,3 @@ export async function runCli(argv = process.argv) {
 
 	console.log(`Feature ${entity} inserida com sucesso!`);
 }
-
- await runCli();

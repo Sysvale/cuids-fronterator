@@ -12,7 +12,7 @@
   },
   "types": "./dist/common/index.d.ts",
   "bin": {
-    "cuids-generator": "./dist/cli.js"
+    "cuids-generator": "./dist/bin.js"
   },
   "files": [
     "dist"

@@ -3,7 +3,7 @@ import { execSync } from 'node:child_process';
 import vue from 'esbuild-plugin-vue-next';
 
 export default defineConfig({
-  entry: ['cli.ts'],
+  entry: ['cli.ts', 'bin.ts'],
   format: ['esm'],
   target: 'node22',
   outDir: 'dist',
