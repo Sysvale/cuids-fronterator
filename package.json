@@ -42,12 +42,14 @@
     "vue": "^3.5.26"
   },
   "dependencies": {
-    "esbuild-plugin-vue-next": "^0.1.4"
+    "esbuild-plugin-vue-next": "^0.1.4",
+    "prompts": "^2.4.2"
   },
   "devDependencies": {
     "@sysvale/cuida": "^3.151.2",
     "@sysvale/show": "^1.24.0",
     "@types/node": "^25.0.3",
+    "@types/prompts": "^2.4.9",
     "@vitest/coverage-v8": "^4.0.16",
     "axios": "^1.13.2",
     "execa": "^9.6.1",
