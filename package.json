@@ -6,9 +6,11 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/common/index.js"
+      "import": "./dist/common/index.js",
+      "types": "./dist/common/index.d.ts"
     }
   },
+  "types": "./dist/common/index.d.ts",
   "bin": {
     "cuids-generator": "./dist/cli.js"
   },

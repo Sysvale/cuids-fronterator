@@ -11,9 +11,10 @@ export default defineConfig({
   splitting: false,
   sourcemap: false,
   esbuildPlugins: [vue()],
+  dts: true,
   async onSuccess() {
-	execSync('cp -R src/common dist/');
-	execSync('cp -R src/stubs dist/stubs');
-	execSync('cp -R src/domain dist/domain');
+    execSync('cp -R src/common dist/');
+    execSync('cp -R src/stubs dist/stubs');
+    execSync('cp -R src/domain dist/domain');
   }
 });
