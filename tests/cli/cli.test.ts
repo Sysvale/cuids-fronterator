@@ -1,35 +1,28 @@
-import { describe, it, expect, vi, beforeEach, afterEach, type Mock } from 'vitest';
+import { describe, it, expect, vi, type Mock } from 'vitest';
 import prompts from 'prompts';
 import { runCli } from '../../cli';
 import { createTmpProject } from '../helpers/tmpDir';
 
 vi.mock('prompts', () => ({
-  default: vi.fn(),
+	default: vi.fn(),
 }));
 
 describe('CLI interactive', () => {
-let originalCwd: string;
+	it('uses prompt when entity is not provided', async () => {
+		const originalCwd = process.cwd();
+		const tmpProject = await createTmpProject();
 
-  beforeEach(() => {
-    originalCwd = process.cwd();
-  });
+		(prompts as unknown as Mock).mockResolvedValue({
+			entity: 'User',
+		});
 
-  afterEach(() => {
-    process.chdir(originalCwd);
-    vi.clearAllMocks();
-  });
+		process.chdir(tmpProject);
 
-  it('uses prompt when entity is not provided', async () => {
-	const tmpProject = await createTmpProject();
+		await runCli(['node', 'cli.js']);
 
-    (prompts as unknown as Mock).mockResolvedValue({
-      entity: 'User',
-    });
+		expect(prompts).toHaveBeenCalledOnce();
 
-	process.chdir(tmpProject);
-
-    await runCli(['node', 'cli.js']);
-
-    expect(prompts).toHaveBeenCalledOnce();
-  });
+		process.chdir(originalCwd);
+		vi.clearAllMocks();
+	});
 });
