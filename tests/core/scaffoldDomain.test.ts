@@ -72,12 +72,4 @@ describe('scaffoldDomain', () => {
 		expect(content).toContain('Product');
 		expect(content).not.toMatch(/__\w+__/);
 	});
-
-	it('throws if entity replacement is missing', async () => {
-		const root = await createTmpProject();
-
-		await expect(
-			scaffoldDomain(DOMAIN_DIR, root, {})
-		).rejects.toThrow('Missing required replacement');
-	});
 });

@@ -8,7 +8,7 @@ vi.mock('prompts', () => ({
 }));
 
 describe('CLI interactive', () => {
-	it('uses prompt when entity is not provided', async () => {
+	it('uses prompt correctly', async () => {
 		const originalCwd = process.cwd();
 		const tmpProject = await createTmpProject();
 
@@ -18,11 +18,28 @@ describe('CLI interactive', () => {
 
 		process.chdir(tmpProject);
 
-		await runCli(['node', 'cli.js']);
+		await runCli();
 
 		expect(prompts).toHaveBeenCalledOnce();
 
 		process.chdir(originalCwd);
 		vi.clearAllMocks();
 	});
+
+	it('finishes correctly on empty prompt', async () => {
+		const tmpProject = await createTmpProject();
+		const mockExit = vi.spyOn(process, 'exit').mockImplementation((() => {}) as (code?: string | number | null) => never);
+
+		(prompts as unknown as Mock).mockResolvedValue({
+			entity: null,
+		});
+
+		process.chdir(tmpProject);
+
+		await runCli();
+
+		expect(prompts).toHaveBeenCalledOnce();
+
+		expect(mockExit).toHaveBeenCalledWith(0);
+	})
 });

@@ -15,12 +15,6 @@ export async function scaffoldFeature(
 	projectRoot: string,
 	replacements: Replacements
 ) {
-	if (!replacements.entity) {
-		throw new Error(
-			'Missing required replacement: "entity" (lowercase entity name)'
-		);
-	}
-
 	const targetRoot = join(
 		projectRoot,
 		'resources',
@@ -39,12 +33,6 @@ export async function scaffoldDomain(
 	projectRoot: string,
 	replacements: Replacements
 ) {
-	if (!replacements.entity) {
-		throw new Error(
-			'Missing required replacement: "entity" (lowercase entity name)'
-		);
-	}
-
 	const targetRoot = join(
 		projectRoot,
 		'resources',
@@ -152,7 +140,7 @@ async function injectImport(
 	const file = await readFile(filePath, 'utf-8');
 
 	if (!file.includes(marker)) {
-		throw new Error(`Marker "${marker}" not found in ${filePath}`);
+		throw new Error(`Marcador "${marker}" não encontrado em ${filePath}`);
 	}
 
 	if (file.includes(importStatement)) {
@@ -175,7 +163,7 @@ async function injectObjectEntry(
 	const file = await readFile(filePath, 'utf-8');
 
 	if (!file.includes(marker)) {
-		throw new Error(`Marker "${marker}" not found in ${filePath}`);
+		throw new Error(`Marcador "${marker}" não encontrado em ${filePath}`);
 	}
 
 	if (file.includes(entry)) {
