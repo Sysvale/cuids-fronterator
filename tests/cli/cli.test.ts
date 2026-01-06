@@ -11,6 +11,8 @@ describe('CLI interactive', () => {
 	it('uses prompt correctly', async () => {
 		const originalCwd = process.cwd();
 		const tmpProject = await createTmpProject();
+		const mockConsoleLog = vi.fn();
+		console.log = mockConsoleLog;
 
 		(prompts as unknown as Mock).mockResolvedValue({
 			entity: 'User',
@@ -21,6 +23,7 @@ describe('CLI interactive', () => {
 		await runCli();
 
 		expect(prompts).toHaveBeenCalledOnce();
+		expect(mockConsoleLog).toHaveBeenCalledWith(expect.stringContaining('Feature User inserida com sucesso!'));
 
 		process.chdir(originalCwd);
 		vi.clearAllMocks();
@@ -29,6 +32,8 @@ describe('CLI interactive', () => {
 	it('finishes correctly on empty prompt', async () => {
 		const tmpProject = await createTmpProject();
 		const mockExit = vi.spyOn(process, 'exit').mockImplementation((() => {}) as (code?: string | number | null) => never);
+		const mockConsoleLog = vi.fn();
+		console.log = mockConsoleLog;
 
 		(prompts as unknown as Mock).mockResolvedValue({
 			entity: null,
@@ -39,7 +44,7 @@ describe('CLI interactive', () => {
 		await runCli();
 
 		expect(prompts).toHaveBeenCalledOnce();
-
+		expect(mockConsoleLog).toHaveBeenCalledWith(expect.stringContaining('Operação cancelada.'));
 		expect(mockExit).toHaveBeenCalledWith(0);
 	})
 });
