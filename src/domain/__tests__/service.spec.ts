@@ -16,7 +16,7 @@ describe('__ENTITY__ service', () => {
 
 		await __entity__Service.create(itemToCreate);
 
-		expect(mockedAxios.post).toHaveBeenCalledWith('/entities', itemToCreate);
+		expect(mockedAxios.post).toHaveBeenCalledWith('/__entityPlural__', itemToCreate);
 		expect(mockedAxios.post).toHaveBeenCalledTimes(1);
 	});
 
@@ -26,25 +26,25 @@ describe('__ENTITY__ service', () => {
 			name: 'Test resource',
 		});
 
-		expect(mockedAxios.put).toHaveBeenCalledWith('/entities/1', { name: 'Test resource' });
+		expect(mockedAxios.put).toHaveBeenCalledWith('/__entityPlural__/1', { name: 'Test resource' });
 		expect(mockedAxios.put).toHaveBeenCalledTimes(1);
 	});
 
 	test('Index', async () => {
 		await __entity__Service.index({ filter: 'test' });
 
-		expect(mockedAxios.get).toHaveBeenCalledWith('/entities', { params: { filter: 'test' } });
+		expect(mockedAxios.get).toHaveBeenCalledWith('/__entityPlural__', { params: { filter: 'test' } });
 		expect(mockedAxios.get).toHaveBeenCalledTimes(1);
 	});
 
 	test('Delete', async () => {
 		await __entity__Service.delete('test');
 
-		expect(mockedAxios.delete).toHaveBeenCalledWith('/entities/test');
+		expect(mockedAxios.delete).toHaveBeenCalledWith('/__entityPlural__/test');
 		
 		await __entity__Service.delete({ id: 'test' });
 		
-		expect(mockedAxios.delete).toHaveBeenCalledWith('/entities/test');
+		expect(mockedAxios.delete).toHaveBeenCalledWith('/__entityPlural__/test');
 		expect(mockedAxios.delete).toHaveBeenCalledTimes(2);
 	});
 
@@ -54,7 +54,7 @@ describe('__ENTITY__ service', () => {
 			name: 'Test resource',
 		});
 
-		expect(mockedAxios.get).toHaveBeenCalledWith('/entities/1', { params: { name: 'Test resource' } });
+		expect(mockedAxios.get).toHaveBeenCalledWith('/__entityPlural__/1', { params: { name: 'Test resource' } });
 		expect(mockedAxios.get).toHaveBeenCalledTimes(2);
 	});
 });
