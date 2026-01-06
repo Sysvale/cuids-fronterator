@@ -1,6 +1,6 @@
 {
   "name": "@sysvale/cuids-generator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A CLI to generate easy frontend CRUD flows.",
   "main": "./dist/index.js",
   "module": "./dist/index.cjs",
