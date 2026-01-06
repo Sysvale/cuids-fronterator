@@ -63,6 +63,6 @@ describe('__ENTITY__ service', () => {
 		});
 
 		expect(mockedAxios.get).toHaveBeenCalledWith('/__entityPlural__/1', { params: { name: 'Test resource' } });
-		expect(mockedAxios.get).toHaveBeenCalledTimes(2);
+		expect(mockedAxios.get).toHaveBeenCalledTimes(1);
 	});
 });
