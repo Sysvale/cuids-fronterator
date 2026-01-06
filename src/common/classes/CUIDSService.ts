@@ -16,7 +16,7 @@ export abstract class CUIDSService<T> implements IRead<T>, IWrite<T> {
 		return this.httpClient.post(`/${this.resource}`, item);
 	};
 
-	update = async (params?:any): Promise<T> => {
+	update = async (params?: any): Promise<T> => {
 		const { id, ...args } = params;
 		return this.httpClient.put(`/${this.resource}/${id}`, args);
 	};
@@ -25,12 +25,12 @@ export abstract class CUIDSService<T> implements IRead<T>, IWrite<T> {
 		return this.httpClient.get(`/${this.resource}`, { params });
 	};
 
-	delete = async (param: any): Promise<T> => {
+	delete = async (param: string | { id: string }): Promise<T> => {
 		const id = typeof param === 'string' ? param : param.id;
 		return this.httpClient.delete(`/${this.resource}/${id}`);
 	};
 
-	show = async (params?:any): Promise<T> => {
+	show = async (params: any): Promise<T> => {
 		const { id, ...args } = params;
 		return this.httpClient.get(`/${this.resource}/${id}`, { params: args });
 	};
