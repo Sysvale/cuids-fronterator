@@ -1,14 +1,22 @@
 /* eslint-disable no-undef */
-import __entity__Service from '../__entity__.service';
+import __ENTITY__Service from '../__entity__.service';
 import __ENTITY__ from '../__entity__.model';
 import axios from 'axios';
-import { vi, describe, test, expect } from 'vitest';
+import { vi, describe, test, expect, beforeEach } from 'vitest';
+import { type Service } from '@sysvale/cuids-generator';
 
 vi.mock('axios');
 
 const mockedAxios = axios;
 
+let __entity__Service: Service<__ENTITY__>;
+
 describe('__ENTITY__ service', () => {
+	beforeEach(() => {
+		vi.clearAllMocks();
+		__entity__Service = new __ENTITY__Service('__entityPlural__', mockedAxios);
+	});
+
 	test('Create', async () => {
 		const itemToCreate = new __ENTITY__ ({
 			name: 'Test resource',
