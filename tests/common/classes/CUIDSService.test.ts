@@ -18,7 +18,7 @@ describe('CUIDSService', () => {
 
 	beforeEach(() => {
 		vi.clearAllMocks();
-		service = new TestService('users');
+		service = new TestService('users', axios);
 	});
 
 	it('creates an item via POST', async () => {

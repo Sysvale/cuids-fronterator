@@ -7,9 +7,9 @@ export abstract class CUIDSService<T> implements IRead<T>, IWrite<T> {
 	private resource: string;
 	protected httpClient: any;
 
-	constructor(resource: string) {
+	constructor(resource: string, httpClient?: any) {
 		this.resource = resource;
-		this.httpClient = axios;
+		this.httpClient = httpClient ||axios;
 	}
 
 	create = async (item: T): Promise<T> => {
