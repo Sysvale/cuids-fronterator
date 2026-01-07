@@ -1,0 +1,63 @@
+{
+  "name": "@sysvale/cuids-generator",
+  "version": "1.0.3",
+  "description": "A CLI to generate easy frontend CRUD flows.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.cjs",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.cts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "bin": {
+    "cuids-generator": "./dist/bin.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "build": "tsup"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sysvale/cuids-fronterator.git"
+  },
+  "author": "Sysvale Health Tech",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sysvale/cuids-fronterator/issues"
+  },
+  "homepage": "https://github.com/Sysvale/cuids-fronterator#readme",
+  "peerDependencies": {
+    "@sysvale/cuida": "^3.151.2",
+    "@sysvale/show": "^1.24.0",
+    "axios": "^1.13.2",
+    "sass": "^1.97.1",
+    "vitest": "^4.0.16",
+    "vue": "^3.5.26"
+  },
+  "dependencies": {
+    "esbuild-plugin-vue-next": "^0.1.4",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@sysvale/cuida": "^3.151.2",
+    "@sysvale/show": "^1.24.0",
+    "@types/node": "^25.0.3",
+    "@types/prompts": "^2.4.9",
+    "@vitest/coverage-v8": "^4.0.16",
+    "axios": "^1.13.2",
+    "execa": "^9.6.1",
+    "sass": "^1.97.1",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16",
+    "vue": "^3.5.26"
+  }
+}
