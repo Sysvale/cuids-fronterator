@@ -19,6 +19,8 @@ describe('scaffoldFeature', () => {
 				ENTITY_CAPS_PLURAL: 'USERS',
 				entity: 'user',
 				entityPlural: 'users',
+				entityKebab: 'user',
+				entityKebabPlural: 'users',
 			}
 		);
 
