@@ -8,6 +8,7 @@ import {
 	pascalCase,
 	camelCase,
 	constantCase,
+	kebabCase,
 	// @ts-ignore
 } from 'change-case';
 
@@ -27,7 +28,8 @@ export async function runCli() {
 	}
 
 	const projectRoot = process.cwd();
-
+	const singularKebab = kebabCase(response.entity).toLowerCase();
+	const pluralKebab = kebabCase(pluralize(response.entity)).toLowerCase();
 	const singularPascal = pascalCase(response.entity);
 	const pluralPascal = pascalCase(pluralize(response.entity));
 	const singularCamel = camelCase(response.entity);
@@ -40,6 +42,8 @@ export async function runCli() {
 		ENTITY_PLURAL: pluralPascal,
 		entity: singularCamel,
 		entityPlural: pluralCamel,
+		entityKebab: singularKebab,
+		entityKebabPlural: pluralKebab,
 	};
 
 	await scaffoldFeature(STUBS_DIR, projectRoot, replacements);
