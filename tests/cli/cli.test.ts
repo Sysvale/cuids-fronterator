@@ -15,7 +15,7 @@ describe('CLI interactive', () => {
 		console.log = mockConsoleLog;
 
 		(prompts as unknown as Mock).mockResolvedValue({
-			entity: 'User',
+			entity: 'UserCategory',
 		});
 
 		process.chdir(tmpProject);
@@ -23,7 +23,7 @@ describe('CLI interactive', () => {
 		await runCli();
 
 		expect(prompts).toHaveBeenCalledOnce();
-		expect(mockConsoleLog).toHaveBeenCalledWith(expect.stringContaining('Feature User inserida com sucesso!'));
+		expect(mockConsoleLog).toHaveBeenCalledWith(expect.stringContaining('Feature UserCategory inserida com sucesso!'));
 
 		process.chdir(originalCwd);
 		vi.clearAllMocks();

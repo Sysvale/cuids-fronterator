@@ -2,6 +2,14 @@
 import prompts from 'prompts';
 import { scaffoldFeature, scaffoldDomain } from './src/scaffold.js';
 import { DOMAIN_DIR, STUBS_DIR } from './src/paths.js';
+// @ts-ignore
+import pluralize from 'pluralize';
+import {
+	pascalCase,
+	camelCase,
+	constantCase,
+	// @ts-ignore
+} from 'change-case';
 
 export async function runCli() {
 	const response = await prompts({
@@ -20,13 +28,18 @@ export async function runCli() {
 
 	const projectRoot = process.cwd();
 
+	const singularPascal = pascalCase(response.entity);
+	const pluralPascal = pascalCase(pluralize(response.entity));
+	const singularCamel = camelCase(response.entity);
+	const pluralCamel = camelCase(pluralize(response.entity));
+
 	const replacements = {
-		ENTITY_CAPS: response.entity.toUpperCase(),
-		ENTITY_CAPS_PLURAL: `${response.entity.toUpperCase()}S`,
-		ENTITY: response.entity,
-		ENTITY_PLURAL: `${response.entity}s`,
-		entity: response.entity.toLowerCase(),
-		entityPlural: `${response.entity.toLowerCase()}s`,
+		ENTITY_CAPS: constantCase(singularPascal),
+		ENTITY_CAPS_PLURAL: constantCase(pluralPascal),
+		ENTITY: singularPascal,
+		ENTITY_PLURAL: pluralPascal,
+		entity: singularCamel,
+		entityPlural: pluralCamel,
 	};
 
 	await scaffoldFeature(STUBS_DIR, projectRoot, replacements);
