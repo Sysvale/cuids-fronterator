@@ -7,6 +7,7 @@ export class __ENTITY_PLURAL__PageSettings implements ICuidsPageSettings {
 	createSuccessFeedbackTitle = 'Sucesso';
 	createSuccessFeedbackText = 'Item criado com sucesso';
 	createSuccessFeedbackParams = {};
+	hideCreateButton = false;
 	deleteSuccessFeedbackText = 'Item excluído com sucesso';
 	deleteSuccessFeedbackTitle = 'Sucesso';
 	deleteSuccessFeedbackParams = {};

@@ -3,6 +3,7 @@ export interface ICuidsPageSettings {
 	createSuccessFeedbackTitle: String;
 	createSuccessFeedbackText: String;
 	createSuccessFeedbackParams: Object;
+	hideCreateButton?: Boolean;
 	deleteSuccessFeedbackText: String;
 	deleteSuccessFeedbackTitle: String;
 	deleteSuccessFeedbackParams: Object;

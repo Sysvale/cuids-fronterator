@@ -8,6 +8,7 @@
 				#aside
 			>
 				<CdsButton
+					v-if="!pageSettings.hideCreateButton"
 					:text="pageSettings.addItemButtonText"
 					:variant="pageSettings.variant"
 					@click="emits('add-item')"
